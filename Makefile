@@ -2,7 +2,6 @@
 
 # --- Fichiers d'environnement ---
 
-# Règle magique : si .env.local n'existe pas, Make le crée
 .env.local:
 	@echo "🪄 Création automatique du fichier .env.local..."
 	@echo 'APP_ENV=dev' > .env.local
@@ -12,7 +11,6 @@
 
 # --- Docker ---
 
-# "up" dépend désormais de la présence de ".env.local"
 up: .env.local
 	docker compose up -d --build
 
@@ -31,6 +29,8 @@ install: up
 	@echo "⏳ Création du projet Symfony..."
 	docker compose exec php composer create-project symfony/skeleton:"^8.0" tmp
 	docker compose exec php sh -c "cp -a tmp/. . && rm -rf tmp"
+	@echo "🛡️  Désactivation des configurations Docker par défaut de Symfony..."
+	docker compose exec php composer config extra.symfony.docker false
 	@echo "⏳ Installation de l'ORM (Doctrine)..."
 	docker compose exec php composer require orm
 	@echo "⏳ Installation du MakerBundle et des Fixtures..."
