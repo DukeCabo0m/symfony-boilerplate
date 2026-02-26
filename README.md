@@ -19,24 +19,15 @@ Un environnement de développement Docker prêt à l'emploi, optimisé pour Symf
 
 1. **Cloner ce dépôt** pour démarrer un nouveau projet :
    ```bash
-   git clone <url-de-ton-repo> nom-de-mon-nouveau-projet
+   git clone [https://github.com/DukeCabo0m/symfony-boilerplate.git](https://github.com/DukeCabo0m/symfony-boilerplate.git) nom-de-mon-nouveau-projet
    cd nom-de-mon-nouveau-projet
    ```
 
-2. **Créer le fichier d'environnement local** :
-   Crée un fichier `.env.local` à la racine avec les variables de base :
-   ```env
-   APP_ENV=dev
-   APP_SECRET=UnSecretSuperSecurise
-   DATABASE_URL="postgresql://app:secret@database:5432/app?serverVersion=16&charset=utf8"
-   MAILER_DSN="smtp://mailpit:1025"
-   ```
-
-3. **Lancer l'installation automatisée** :
+2. **Lancer l'installation automatisée** :
    ```bash
    make install
    ```
-   *Cette commande va monter les conteneurs, installer Symfony 8, configurer Doctrine, le MakerBundle et les Fixtures.*
+   *Cette commande va générer automatiquement le fichier `.env.local`, monter les conteneurs, installer Symfony 8, configurer Doctrine, le MakerBundle et les Fixtures.*
 
 ## 🌍 Accès aux Services
 
@@ -53,7 +44,7 @@ Le projet inclut un `Makefile` pour simplifier la gestion des conteneurs et de S
 ### 🐳 Docker & Système
 | Commande | Description |
 | :--- | :--- |
-| `make up` | Démarre tous les conteneurs en arrière-plan. |
+| `make up` | Démarre tous les conteneurs en arrière-plan (et génère le `.env.local` si manquant). |
 | `make down` | Arrête et détruit les conteneurs du projet. |
 | `make shell` | Ouvre un terminal `sh` à l'intérieur du conteneur PHP. |
 | `make logs` | Affiche les logs des conteneurs en temps réel. |

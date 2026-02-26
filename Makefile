@@ -1,8 +1,19 @@
 .PHONY: up down install shell logs db-create migrate fixtures db-reset
 
+# --- Fichiers d'environnement ---
+
+# Règle magique : si .env.local n'existe pas, Make le crée
+.env.local:
+	@echo "🪄 Création automatique du fichier .env.local..."
+	@echo 'APP_ENV=dev' > .env.local
+	@echo 'APP_SECRET=UnSecretSuperSecurise' >> .env.local
+	@echo 'DATABASE_URL="postgresql://app:secret@database:5432/app?serverVersion=16&charset=utf8"' >> .env.local
+	@echo 'MAILER_DSN="smtp://mailpit:1025"' >> .env.local
+
 # --- Docker ---
 
-up:
+# "up" dépend désormais de la présence de ".env.local"
+up: .env.local
 	docker compose up -d --build
 
 down:
