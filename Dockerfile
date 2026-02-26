@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Autoriser Git à travailler dans le dossier monté depuis l'hôte
+RUN git config --global --add safe.directory /app
+
 # Installation de Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
