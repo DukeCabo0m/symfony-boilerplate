@@ -1,0 +1,33 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> OS & Outils de développement ###
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+###< OS & Outils de développement ###
+
+###> Docker & FrankenPHP (si montés en local) ###
+/caddy_data/
+/caddy_config/
+/database_data/
+###< Docker & FrankenPHP ###
