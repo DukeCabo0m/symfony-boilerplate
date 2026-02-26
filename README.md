@@ -1,11 +1,11 @@
 # 🚀 Symfony 8 Docker Boilerplate
 
-Un environnement de développement Docker prêt à l'emploi, optimisé pour Symfony 8. Il intègre un serveur web performant, une base de données robuste, un intercepteur d'emails et un Makefile pour automatiser toutes les tâches courantes.
+Un environnement de développement Docker prêt à l'emploi, optimisé pour Symfony 8. Il intègre un serveur web performant avec HTTPS automatique, une base de données robuste, un intercepteur d'emails et un Makefile pour automatiser toutes les tâches courantes.
 
 ## 🛠️ Stack Technique
 
 * **PHP** : 8.4
-* **Serveur Web** : FrankenPHP
+* **Serveur Web** : FrankenPHP (Caddy) avec HTTPS automatique
 * **Base de données** : PostgreSQL 16
 * **Mails** : Mailpit (Catch-all pour le développement)
 * **Framework** : Symfony 8 (Skeleton + ORM + MakerBundle + Fixtures)
@@ -27,13 +27,14 @@ Un environnement de développement Docker prêt à l'emploi, optimisé pour Symf
    ```bash
    make install
    ```
-   *Cette commande va générer automatiquement le fichier `.env.local`, monter les conteneurs, installer Symfony 8, configurer Doctrine, le MakerBundle et les Fixtures.*
+   *Cette commande va générer automatiquement le fichier `.env.local`, monter les conteneurs, installer Symfony 8, configurer Doctrine de manière silencieuse et préparer les outils de développement.*
 
 ## 🌍 Accès aux Services
 
 Une fois l'environnement démarré (`make up`), les services sont accessibles aux adresses suivantes :
 
-* **Application Web** : [https://localhost](https://localhost) *(Ignorer l'avertissement SSL lié au certificat auto-signé de développement)*
+* **Application Web** : [https://localhost](https://localhost)
+  > ⚠️ **Note sur le HTTPS** : Lors de la première connexion, ton navigateur affichera un avertissement de sécurité ("Connexion non privée"). C'est normal : FrankenPHP génère un certificat de développement auto-signé. Tu peux ignorer cet avertissement et poursuivre vers le site (ex: taper `thisisunsafe` sous Chrome/Brave ou cliquer sur "Avancé > Accepter le risque" sous Firefox).
 * **Interface Mailpit** : [http://localhost:8025](http://localhost:8025)
 * **Base de données** : Port `5432` (Utilisateur: `app`, Mot de passe: `secret`, BDD: `app`)
 

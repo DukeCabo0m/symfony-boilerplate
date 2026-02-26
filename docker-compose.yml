@@ -10,9 +10,9 @@ services:
     env_file:
       - .env.local
     environment:
-      SERVER_NAME: ":80"
-      # Les variables Symfony (APP_ENV, DATABASE_URL, MAILER_DSN)
-      # sont gérées directement via le fichier .env.local
+      # L'utilisation de "localhost" active la génération automatique 
+      # du certificat SSL de développement par Caddy/FrankenPHP
+      SERVER_NAME: "localhost"
     volumes:
       - .:/app
       - caddy_data:/data
